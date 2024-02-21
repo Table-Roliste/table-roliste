@@ -17,12 +17,12 @@ class Genre
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Name = null;
+    private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $Description = null;
+    private ?string $description = null;
 
-    #[ORM\ManyToMany(targetEntity: GameSession::class, mappedBy: 'Genre')]
+    #[ORM\ManyToMany(targetEntity: GameSession::class, mappedBy: 'genre')]
     private Collection $gameSessions;
 
     public function __construct()
@@ -37,24 +37,24 @@ class Genre
 
     public function getName(): ?string
     {
-        return $this->Name;
+        return $this->name;
     }
 
-    public function setName(string $Name): static
+    public function setName(string $name): static
     {
-        $this->Name = $Name;
+        $this->name = $name;
 
         return $this;
     }
 
     public function getDescription(): ?string
     {
-        return $this->Description;
+        return $this->description;
     }
 
-    public function setDescription(?string $Description): static
+    public function setDescription(?string $description): static
     {
-        $this->Description = $Description;
+        $this->description = $description;
 
         return $this;
     }

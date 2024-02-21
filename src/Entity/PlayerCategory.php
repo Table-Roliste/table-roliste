@@ -17,12 +17,12 @@ class PlayerCategory
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Category = null;
+    private ?string $category = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $Description = null;
+    private ?string $description = null;
 
-    #[ORM\ManyToMany(targetEntity: GameSession::class, mappedBy: 'PlayerCategory')]
+    #[ORM\ManyToMany(targetEntity: GameSession::class, mappedBy: 'playerCategory')]
     private Collection $gameSessions;
 
     public function __construct()
@@ -37,24 +37,24 @@ class PlayerCategory
 
     public function getCategory(): ?string
     {
-        return $this->Category;
+        return $this->category;
     }
 
-    public function setCategory(string $Category): static
+    public function setCategory(string $category): static
     {
-        $this->Category = $Category;
+        $this->category = $category;
 
         return $this;
     }
 
     public function getDescription(): ?string
     {
-        return $this->Description;
+        return $this->description;
     }
 
-    public function setDescription(?string $Description): static
+    public function setDescription(?string $description): static
     {
-        $this->Description = $Description;
+        $this->description = $description;
 
         return $this;
     }

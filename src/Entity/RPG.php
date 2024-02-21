@@ -16,20 +16,20 @@ class RPG
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Name = null;
+    private ?string $name = null;
 
     #[ORM\ManyToMany(targetEntity: Author::class, inversedBy: 'RPGs')]
-    private Collection $Author;
+    private Collection $author;
 
     #[ORM\Column(length: 2080, nullable: true)]
-    private ?string $GrogLink = null;
+    private ?string $grogLink = null;
 
     #[ORM\OneToMany(mappedBy: 'RPG', targetEntity: GameSession::class)]
     private Collection $gameSessions;
 
     public function __construct()
     {
-        $this->Author = new ArrayCollection();
+        $this->author = new ArrayCollection();
         $this->gameSessions = new ArrayCollection();
     }
 
@@ -40,12 +40,12 @@ class RPG
 
     public function getName(): ?string
     {
-        return $this->Name;
+        return $this->name;
     }
 
-    public function setName(string $Name): static
+    public function setName(string $name): static
     {
-        $this->Name = $Name;
+        $this->name = $name;
 
         return $this;
     }
@@ -55,13 +55,13 @@ class RPG
      */
     public function getAuthor(): Collection
     {
-        return $this->Author;
+        return $this->author;
     }
 
     public function addAuthor(Author $author): static
     {
-        if (!$this->Author->contains($author)) {
-            $this->Author->add($author);
+        if (!$this->author->contains($author)) {
+            $this->author->add($author);
         }
 
         return $this;
@@ -69,19 +69,19 @@ class RPG
 
     public function removeAuthor(Author $author): static
     {
-        $this->Author->removeElement($author);
+        $this->author->removeElement($author);
 
         return $this;
     }
 
     public function getGrogLink(): ?string
     {
-        return $this->GrogLink;
+        return $this->grogLink;
     }
 
-    public function setGrogLink(?string $GrogLink): static
+    public function setGrogLink(?string $grogLink): static
     {
-        $this->GrogLink = $GrogLink;
+        $this->grogLink = $grogLink;
 
         return $this;
     }

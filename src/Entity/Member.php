@@ -15,7 +15,7 @@ class Member
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $MembershipEndDate = null;
+    private ?\DateTimeInterface $membershipEndDate = null;
 
     public function getId(): ?int
     {
@@ -24,12 +24,12 @@ class Member
 
     public function getMembershipEndDate(): ?\DateTimeInterface
     {
-        return $this->MembershipEndDate;
+        return $this->membershipEndDate;
     }
 
-    public function setMembershipEndDate(?\DateTimeInterface $MembershipEndDate): static
+    public function setMembershipEndDate(?\DateTimeInterface $membershipEndDate): static
     {
-        $this->MembershipEndDate = $MembershipEndDate;
+        $this->membershipEndDate = $membershipEndDate;
 
         return $this;
     }

@@ -16,13 +16,13 @@ class GameTable
 
     #[ORM\ManyToOne(inversedBy: 'gameTables')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Event $Event = null;
+    private ?Event $event = null;
 
     #[ORM\Column(type: Types::SMALLINT)]
-    private ?int $Seating = null;
+    private ?int $seating = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Name = null;
+    private ?string $name = null;
 
     public function getId(): ?int
     {
@@ -31,36 +31,36 @@ class GameTable
 
     public function getEvent(): ?Event
     {
-        return $this->Event;
+        return $this->event;
     }
 
-    public function setEvent(?Event $Event): static
+    public function setEvent(?Event $event): static
     {
-        $this->Event = $Event;
+        $this->event = $event;
 
         return $this;
     }
 
     public function getSeating(): ?int
     {
-        return $this->Seating;
+        return $this->seating;
     }
 
-    public function setSeating(int $Seating): static
+    public function setSeating(int $seating): static
     {
-        $this->Seating = $Seating;
+        $this->seating = $seating;
 
         return $this;
     }
 
     public function getName(): ?string
     {
-        return $this->Name;
+        return $this->name;
     }
 
-    public function setName(string $Name): static
+    public function setName(string $name): static
     {
-        $this->Name = $Name;
+        $this->name = $name;
 
         return $this;
     }

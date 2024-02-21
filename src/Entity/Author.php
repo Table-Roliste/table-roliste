@@ -16,15 +16,15 @@ class Author
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $Firstname = null;
+    private ?string $firstname = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $Lastname = null;
+    private ?string $lastname = null;
 
-    #[ORM\ManyToMany(targetEntity: Scenario::class, mappedBy: 'Author')]
+    #[ORM\ManyToMany(targetEntity: Scenario::class, mappedBy: 'author')]
     private Collection $scenarios;
 
-    #[ORM\ManyToMany(targetEntity: RPG::class, mappedBy: 'Author')]
+    #[ORM\ManyToMany(targetEntity: RPG::class, mappedBy: 'author')]
     private Collection $RPGs;
 
     public function __construct()
@@ -40,24 +40,24 @@ class Author
 
     public function getFirstname(): ?string
     {
-        return $this->Firstname;
+        return $this->firstname;
     }
 
-    public function setFirstname(?string $Firstname): static
+    public function setFirstname(?string $firstname): static
     {
-        $this->Firstname = $Firstname;
+        $this->firstname = $firstname;
 
         return $this;
     }
 
     public function getLastname(): ?string
     {
-        return $this->Lastname;
+        return $this->lastname;
     }
 
-    public function setLastname(?string $Lastname): static
+    public function setLastname(?string $lastname): static
     {
-        $this->Lastname = $Lastname;
+        $this->lastname = $lastname;
 
         return $this;
     }

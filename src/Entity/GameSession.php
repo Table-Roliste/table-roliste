@@ -17,44 +17,44 @@ class GameSession
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $StartingDate = null;
+    private ?\DateTimeInterface $startingDate = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $EndingDate = null;
+    private ?\DateTimeInterface $endingDate = null;
 
     #[ORM\ManyToOne(inversedBy: 'gameSessions')]
-    private ?Scenario $Scenario = null;
+    private ?Scenario $scenario = null;
 
     #[ORM\ManyToOne(inversedBy: 'gameSessions')]
     private ?RPG $RPG = null;
 
     #[ORM\Column(type: Types::SMALLINT)]
-    private ?int $MinPlayers = null;
+    private ?int $minPlayers = null;
 
     #[ORM\Column(type: Types::SMALLINT)]
-    private ?int $MaxPlayers = null;
+    private ?int $maxPlayers = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $Synopsis = null;
+    private ?string $synopsis = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Status $Status = null;
+    private ?Status $status = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?EmotionnalSecurity $EmotionnalSecurity = null;
+    private ?EmotionnalSecurity $emotionnalSecurity = null;
 
     #[ORM\ManyToMany(targetEntity: Genre::class, inversedBy: 'gameSessions')]
-    private Collection $Genre;
+    private Collection $genre;
 
     #[ORM\ManyToMany(targetEntity: PlayerCategory::class, inversedBy: 'gameSessions')]
-    private Collection $PlayerCategory;
+    private Collection $playerCategory;
 
     public function __construct()
     {
-        $this->Genre = new ArrayCollection();
-        $this->PlayerCategory = new ArrayCollection();
+        $this->genre = new ArrayCollection();
+        $this->playerCategory = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -64,36 +64,36 @@ class GameSession
 
     public function getStartingDate(): ?\DateTimeInterface
     {
-        return $this->StartingDate;
+        return $this->startingDate;
     }
 
-    public function setStartingDate(\DateTimeInterface $StartingDate): static
+    public function setStartingDate(\DateTimeInterface $startingDate): static
     {
-        $this->StartingDate = $StartingDate;
+        $this->startingDate = $startingDate;
 
         return $this;
     }
 
     public function getEndingDate(): ?\DateTimeInterface
     {
-        return $this->EndingDate;
+        return $this->endingDate;
     }
 
-    public function setEndingDate(\DateTimeInterface $EndingDate): static
+    public function setEndingDate(\DateTimeInterface $endingDate): static
     {
-        $this->EndingDate = $EndingDate;
+        $this->endingDate = $endingDate;
 
         return $this;
     }
 
     public function getScenario(): ?Scenario
     {
-        return $this->Scenario;
+        return $this->scenario;
     }
 
-    public function setScenario(?Scenario $Scenario): static
+    public function setScenario(?Scenario $scenario): static
     {
-        $this->Scenario = $Scenario;
+        $this->scenario = $scenario;
 
         return $this;
     }
@@ -112,60 +112,60 @@ class GameSession
 
     public function getMinPlayers(): ?int
     {
-        return $this->MinPlayers;
+        return $this->minPlayers;
     }
 
-    public function setMinPlayers(int $MinPlayers): static
+    public function setMinPlayers(int $minPlayers): static
     {
-        $this->MinPlayers = $MinPlayers;
+        $this->minPlayers = $minPlayers;
 
         return $this;
     }
 
     public function getMaxPlayers(): ?int
     {
-        return $this->MaxPlayers;
+        return $this->maxPlayers;
     }
 
-    public function setMaxPlayers(int $MaxPlayers): static
+    public function setMaxPlayers(int $maxPlayers): static
     {
-        $this->MaxPlayers = $MaxPlayers;
+        $this->maxPlayers = $maxPlayers;
 
         return $this;
     }
 
     public function getSynopsis(): ?string
     {
-        return $this->Synopsis;
+        return $this->synopsis;
     }
 
     public function setSynopsis(string $Synopsis): static
     {
-        $this->Synopsis = $Synopsis;
+        $this->synopsis = $Synopsis;
 
         return $this;
     }
 
     public function getStatus(): ?Status
     {
-        return $this->Status;
+        return $this->status;
     }
 
-    public function setStatus(?Status $Status): static
+    public function setStatus(?Status $status): static
     {
-        $this->Status = $Status;
+        $this->status = $status;
 
         return $this;
     }
 
     public function getEmotionnalSecurity(): ?EmotionnalSecurity
     {
-        return $this->EmotionnalSecurity;
+        return $this->emotionnalSecurity;
     }
 
-    public function setEmotionnalSecurity(?EmotionnalSecurity $EmotionnalSecurity): static
+    public function setEmotionnalSecurity(?EmotionnalSecurity $emotionnalSecurity): static
     {
-        $this->EmotionnalSecurity = $EmotionnalSecurity;
+        $this->emotionnalSecurity = $emotionnalSecurity;
 
         return $this;
     }
@@ -175,13 +175,13 @@ class GameSession
      */
     public function getGenre(): Collection
     {
-        return $this->Genre;
+        return $this->genre;
     }
 
     public function addGenre(Genre $genre): static
     {
-        if (!$this->Genre->contains($genre)) {
-            $this->Genre->add($genre);
+        if (!$this->genre->contains($genre)) {
+            $this->genre->add($genre);
         }
 
         return $this;
@@ -189,7 +189,7 @@ class GameSession
 
     public function removeGenre(Genre $genre): static
     {
-        $this->Genre->removeElement($genre);
+        $this->genre->removeElement($genre);
 
         return $this;
     }
@@ -199,13 +199,13 @@ class GameSession
      */
     public function getPlayerCategory(): Collection
     {
-        return $this->PlayerCategory;
+        return $this->playerCategory;
     }
 
     public function addPlayerCategory(PlayerCategory $playerCategory): static
     {
-        if (!$this->PlayerCategory->contains($playerCategory)) {
-            $this->PlayerCategory->add($playerCategory);
+        if (!$this->playerCategory->contains($playerCategory)) {
+            $this->playerCategory->add($playerCategory);
         }
 
         return $this;
@@ -213,7 +213,7 @@ class GameSession
 
     public function removePlayerCategory(PlayerCategory $playerCategory): static
     {
-        $this->PlayerCategory->removeElement($playerCategory);
+        $this->playerCategory->removeElement($playerCategory);
 
         return $this;
     }
