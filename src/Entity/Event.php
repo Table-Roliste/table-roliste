@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use App\Repository\EventRepository;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -14,28 +17,28 @@ class Event
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private int $id;
 
     #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    private string $name;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $startingDate = null;
+    private DateTimeInterface $startingDate;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $endingDate = null;
+    private DateTimeInterface $endingDate;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $reservationStartingDate = null;
+    private ?DateTimeInterface $reservationStartingDate = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $reservationEndingDate = null;
+    private ?DateTimeInterface $reservationEndingDate = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $tableCreationStartingDate = null;
+    private ?DateTimeInterface $tableCreationStartingDate = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $tableCreationEndingDate = null;
+    private ?DateTimeInterface $tableCreationEndingDate = null;
 
     #[ORM\OneToMany(mappedBy: 'event', targetEntity: GameTable::class, orphanRemoval: true)]
     private Collection $gameTables;
@@ -45,89 +48,84 @@ class Event
         $this->gameTables = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function setName(string $Name): static
+    public function setName(string $name): self
     {
-        $this->name = $Name;
+        $this->name = $name;
 
         return $this;
     }
 
-    public function getStartingDate(): ?\DateTimeInterface
+    public function getStartingDate(): DateTimeInterface
     {
         return $this->startingDate;
     }
 
-    public function setStartingDate(\DateTimeInterface $startingDate): static
+    public function setStartingDate(DateTimeInterface $startingDate): self
     {
         $this->startingDate = $startingDate;
 
         return $this;
     }
 
-    public function getEndingDate(): ?\DateTimeInterface
+    public function getEndingDate(): DateTimeInterface
     {
         return $this->endingDate;
     }
 
-    public function setEndingDate(\DateTimeInterface $endingDate): static
+    public function setEndingDate(DateTimeInterface $endingDate): self
     {
         $this->endingDate = $endingDate;
 
         return $this;
     }
 
-    public function getReservationStartingDate(): ?\DateTimeInterface
+    public function getReservationStartingDate(): ?DateTimeInterface
     {
         return $this->reservationStartingDate;
     }
 
-    public function setReservationStartingDate(?\DateTimeInterface $reservationStartingDate): static
+    public function setReservationStartingDate(?DateTimeInterface $reservationStartingDate): self
     {
         $this->reservationStartingDate = $reservationStartingDate;
 
         return $this;
     }
 
-    public function getReservationEndingDate(): ?\DateTimeInterface
+    public function getReservationEndingDate(): ?DateTimeInterface
     {
         return $this->reservationEndingDate;
     }
 
-    public function setReservationEndingDate(?\DateTimeInterface $reservationEndingDate): static
+    public function setReservationEndingDate(?DateTimeInterface $reservationEndingDate): self
     {
         $this->reservationEndingDate = $reservationEndingDate;
 
         return $this;
     }
 
-    public function getTableCreationStartingDate(): ?\DateTimeInterface
+    public function getTableCreationStartingDate(): ?DateTimeInterface
     {
         return $this->tableCreationStartingDate;
     }
 
-    public function setTableCreationStartingDate(?\DateTimeInterface $tableCreationStartingDate): static
+    public function setTableCreationStartingDate(?DateTimeInterface $tableCreationStartingDate): self
     {
         $this->tableCreationStartingDate = $tableCreationStartingDate;
 
         return $this;
     }
 
-    public function getTableCreationEndingDate(): ?\DateTimeInterface
+    public function getTableCreationEndingDate(): ?DateTimeInterface
     {
         return $this->tableCreationEndingDate;
     }
 
-    public function setTableCreationEndingDate(?\DateTimeInterface $tableCreationEndingDate): static
+    public function setTableCreationEndingDate(?DateTimeInterface $tableCreationEndingDate): self
     {
         $this->tableCreationEndingDate = $tableCreationEndingDate;
 

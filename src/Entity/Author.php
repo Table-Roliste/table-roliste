@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use App\Repository\AuthorRepository;
@@ -13,7 +15,7 @@ class Author
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private int $id;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $firstname = null;
@@ -43,11 +45,9 @@ class Author
         return $this->firstname;
     }
 
-    public function setFirstname(?string $firstname): static
+    public function setFirstname(?string $firstname): void
     {
         $this->firstname = $firstname;
-
-        return $this;
     }
 
     public function getLastname(): ?string
@@ -55,11 +55,9 @@ class Author
         return $this->lastname;
     }
 
-    public function setLastname(?string $lastname): static
+    public function setLastname(?string $lastname): void
     {
         $this->lastname = $lastname;
-
-        return $this;
     }
 
     /**

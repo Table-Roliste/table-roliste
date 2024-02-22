@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use App\Repository\GameTableRepository;
@@ -12,56 +14,50 @@ class GameTable
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private int $id;
 
     #[ORM\ManyToOne(inversedBy: 'gameTables')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Event $event = null;
+    private Event $event;
 
     #[ORM\Column(type: Types::SMALLINT)]
-    private ?int $seating = null;
+    private int $seating;
 
     #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    private string $name;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getEvent(): ?Event
+    public function getEvent(): Event
     {
         return $this->event;
     }
 
-    public function setEvent(?Event $event): static
+    public function setEvent(Event $event): void
     {
         $this->event = $event;
-
-        return $this;
     }
 
-    public function getSeating(): ?int
+    public function getSeating(): int
     {
         return $this->seating;
     }
 
-    public function setSeating(int $seating): static
+    public function setSeating(int $seating): void
     {
         $this->seating = $seating;
-
-        return $this;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function setName(string $name): static
+    public function setName(string $name): void
     {
         $this->name = $name;
-
-        return $this;
     }
 }

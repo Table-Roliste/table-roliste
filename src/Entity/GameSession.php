@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use App\Repository\GameSessionRepository;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -14,18 +17,18 @@ class GameSession
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private int $id;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $startingDate = null;
+    private DateTimeInterface $startingDate;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $endingDate = null;
+    private DateTimeInterface $endingDate;
 
-    #[ORM\ManyToOne(inversedBy: 'gameSessions')]
+    #[ORM\ManyToOne(targetEntity: Scenario::class, inversedBy: 'gameSessions')]
     private ?Scenario $scenario = null;
 
-    #[ORM\ManyToOne(inversedBy: 'gameSessions')]
+    #[ORM\ManyToOne(targetEntity: RPG::class, inversedBy: 'gameSessions')]
     private ?RPG $RPG = null;
 
     #[ORM\Column(type: Types::SMALLINT)]
@@ -62,24 +65,24 @@ class GameSession
         return $this->id;
     }
 
-    public function getStartingDate(): ?\DateTimeInterface
+    public function getStartingDate(): ?DateTimeInterface
     {
         return $this->startingDate;
     }
 
-    public function setStartingDate(\DateTimeInterface $startingDate): static
+    public function setStartingDate(DateTimeInterface $startingDate): static
     {
         $this->startingDate = $startingDate;
 
         return $this;
     }
 
-    public function getEndingDate(): ?\DateTimeInterface
+    public function getEndingDate(): ?DateTimeInterface
     {
         return $this->endingDate;
     }
 
-    public function setEndingDate(\DateTimeInterface $endingDate): static
+    public function setEndingDate(DateTimeInterface $endingDate): static
     {
         $this->endingDate = $endingDate;
 
