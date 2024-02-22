@@ -4,23 +4,23 @@ declare(strict_types=1);
 
 namespace App\Repository;
 
-use App\Entity\GameTable;
+use App\Entity\PhysicalTable;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<GameTable>
+ * @extends ServiceEntityRepository<PhysicalTable>
  *
- * @method GameTable|null find($id, $lockMode = null, $lockVersion = null)
- * @method GameTable|null findOneBy(array $criteria, array $orderBy = null)
- * @method GameTable[]    findAll()
- * @method GameTable[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method PhysicalTable|null find($id, $lockMode = null, $lockVersion = null)
+ * @method PhysicalTable|null findOneBy(array $criteria, array $orderBy = null)
+ * @method PhysicalTable[]    findAll()
+ * @method PhysicalTable[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class GameTableRepository extends ServiceEntityRepository
+class PhysicalTableRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, GameTable::class);
+        parent::__construct($registry, PhysicalTable::class);
     }
 
     //    /**

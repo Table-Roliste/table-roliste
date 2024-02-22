@@ -19,7 +19,7 @@ class Genre
     private int $id;
 
     #[ORM\Column(length: 255)]
-    private ?string $name;
+    private string $name;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
@@ -42,7 +42,7 @@ class Genre
         return $this->name;
     }
 
-    public function setName(?string $name): void
+    public function setName(string $name): void
     {
         $this->name = $name;
     }

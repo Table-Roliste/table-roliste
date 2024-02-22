@@ -17,11 +17,14 @@ class Author
     #[ORM\Column]
     private int $id;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $firstname = null;
+    #[ORM\Column(length: 255)]
+    private string $firstname;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $lastname = null;
+    #[ORM\Column(length: 255)]
+    private string $lastname;
+
+    #[ORM\Column(length: 255)]
+    private string $surname;
 
     #[ORM\ManyToMany(targetEntity: Scenario::class, mappedBy: 'author')]
     private Collection $scenarios;
@@ -40,24 +43,34 @@ class Author
         return $this->id;
     }
 
-    public function getFirstname(): ?string
+    public function getFirstname(): string
     {
         return $this->firstname;
     }
 
-    public function setFirstname(?string $firstname): void
+    public function setFirstname(string $firstname): void
     {
         $this->firstname = $firstname;
     }
 
-    public function getLastname(): ?string
+    public function getLastname(): string
     {
         return $this->lastname;
     }
 
-    public function setLastname(?string $lastname): void
+    public function setLastname(string $lastname): void
     {
         $this->lastname = $lastname;
+    }
+
+    public function getSurname(): string
+    {
+        return $this->surname;
+    }
+
+    public function setSurname(string $surname): void
+    {
+        $this->surname = $surname;
     }
 
     /**

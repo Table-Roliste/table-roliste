@@ -32,10 +32,13 @@ class GameSession
     private ?RPG $RPG = null;
 
     #[ORM\Column(type: Types::SMALLINT)]
-    private ?int $minPlayers = null;
+    private int $minPlayers;
 
     #[ORM\Column(type: Types::SMALLINT)]
-    private ?int $maxPlayers = null;
+    private int $maxPlayers;
+
+    #[ORM\Column(type: Types::SMALLINT)]
+    private int $mjNumber;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $synopsis = null;

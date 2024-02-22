@@ -7,6 +7,7 @@ namespace App\Entity;
 use App\Repository\ScenarioRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ScenarioRepository::class)]
@@ -25,6 +26,9 @@ class Scenario
 
     #[ORM\Column(length: 2080, nullable: true)]
     private ?string $grogLink = null;
+
+    #[ORM\Column(type: Types::INTEGER, length: 13)]
+    private ?int $isbn;
 
     #[ORM\OneToMany(mappedBy: 'scenario', targetEntity: GameSession::class)]
     private Collection $gameSessions;
@@ -48,6 +52,16 @@ class Scenario
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    public function getIsbn(): ?int
+    {
+        return $this->isbn;
+    }
+
+    public function setIsbn(?int $isbn): void
+    {
+        $this->isbn = $isbn;
     }
 
     /**

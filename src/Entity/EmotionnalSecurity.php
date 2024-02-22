@@ -19,8 +19,8 @@ class EmotionnalSecurity
     #[ORM\Column(length: 255)]
     private string $name;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private string $description;
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $description = null;
 
     public function getId(): int
     {
@@ -37,12 +37,12 @@ class EmotionnalSecurity
         $this->name = $name;
     }
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    public function setDescription(string $description): void
+    public function setDescription(?string $description): void
     {
         $this->description = $description;
     }

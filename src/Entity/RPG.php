@@ -7,6 +7,7 @@ namespace App\Entity;
 use App\Repository\RPGRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: RPGRepository::class)]
@@ -19,6 +20,9 @@ class RPG
 
     #[ORM\Column(length: 255)]
     private string $name;
+
+    #[ORM\Column(type: Types::INTEGER, length: 13)]
+    private ?int $isbn;
 
     #[ORM\ManyToMany(targetEntity: Author::class, inversedBy: 'RPGs')]
     private Collection $author;
@@ -48,6 +52,16 @@ class RPG
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    public function getIsbn(): ?int
+    {
+        return $this->isbn;
+    }
+
+    public function setIsbn(?int $isbn): void
+    {
+        $this->isbn = $isbn;
     }
 
     public function getAuthor(): Collection

@@ -40,12 +40,17 @@ class Event
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?DateTimeInterface $tableCreationEndingDate = null;
 
-    #[ORM\OneToMany(mappedBy: 'event', targetEntity: GameTable::class, orphanRemoval: true)]
-    private Collection $gameTables;
+    #[ORM\OneToMany(mappedBy: 'event', targetEntity: PhysicalTable::class, orphanRemoval: true)]
+    private Collection $physicalTables;
 
     public function __construct()
     {
-        $this->gameTables = new ArrayCollection();
+        $this->physicalTables = new ArrayCollection();
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
     }
 
     public function getName(): string
@@ -133,29 +138,29 @@ class Event
     }
 
     /**
-     * @return Collection<int, GameTable>
+     * @return Collection<int, PhysicalTable>
      */
-    public function getGameTables(): Collection
+    public function getPhysicalTables(): Collection
     {
-        return $this->gameTables;
+        return $this->physicalTables;
     }
 
-    public function addGameTable(GameTable $gameTable): static
+    public function addPhysicalTable(PhysicalTable $physicalTables): static
     {
-        if (!$this->gameTables->contains($gameTable)) {
-            $this->gameTables->add($gameTable);
-            $gameTable->setEvent($this);
+        if (!$this->physicalTables->contains($physicalTables)) {
+            $this->physicalTables->add($physicalTables);
+            $physicalTables->setEvent($this);
         }
 
         return $this;
     }
 
-    public function removeGameTable(GameTable $gameTable): static
+    public function removePhysicalTable(PhysicalTable $physicalTables): static
     {
-        if ($this->gameTables->removeElement($gameTable)) {
+        if ($this->physicalTables->removeElement($physicalTables)) {
             // set the owning side to null (unless already changed)
-            if ($gameTable->getEvent() === $this) {
-                $gameTable->setEvent(null);
+            if ($physicalTables->getEvent() === $this) {
+                $physicalTables->setEvent(null);
             }
         }
 

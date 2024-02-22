@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Repository\GameTableRepository;
+use App\Repository\PhysicalTableRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: GameTableRepository::class)]
-class GameTable
+#[ORM\Entity(repositoryClass: PhysicalTableRepository::class)]
+class PhysicalTable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private int $id;
 
-    #[ORM\ManyToOne(inversedBy: 'gameTables')]
+    #[ORM\ManyToOne(inversedBy: 'physicalTables')]
     #[ORM\JoinColumn(nullable: false)]
     private Event $event;
 
