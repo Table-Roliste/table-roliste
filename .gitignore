@@ -1,4 +1,4 @@
-
+/.idea
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
@@ -32,3 +32,6 @@
 ###> phpstan/phpstan ###
 phpstan.neon
 ###< phpstan/phpstan ###
+
+# Docker
+compose.local.yaml
