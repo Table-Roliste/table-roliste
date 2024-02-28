@@ -57,10 +57,23 @@ class GameSession
     #[ORM\ManyToMany(targetEntity: PlayerCategory::class, inversedBy: 'gameSessions')]
     private Collection $playerCategory;
 
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'gameMastersGameSessions')]
+    #[ORM\JoinTable(name: "game_session_game_masters")]
+    private Collection $gameMasters;
+
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'playersGameSessions')]
+    #[ORM\JoinTable(name: "game_session_players")]
+    private Collection $players;
+
+    #[ORM\ManyToOne(inversedBy: 'gameSessions')]
+    private ?Role $role = null;
+
     public function __construct()
     {
         $this->genre = new ArrayCollection();
         $this->playerCategory = new ArrayCollection();
+        $this->gameMasters = new ArrayCollection();
+        $this->players = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -220,6 +233,66 @@ class GameSession
     public function removePlayerCategory(PlayerCategory $playerCategory): static
     {
         $this->playerCategory->removeElement($playerCategory);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getGameMasters(): Collection
+    {
+        return $this->gameMasters;
+    }
+
+    public function addGameMaster(User $gameMaster): static
+    {
+        if (!$this->gameMasters->contains($gameMaster)) {
+            $this->gameMasters->add($gameMaster);
+        }
+
+        return $this;
+    }
+
+    public function removeGameMaster(User $gameMaster): static
+    {
+        $this->gameMasters->removeElement($gameMaster);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getPlayers(): Collection
+    {
+        return $this->players;
+    }
+
+    public function addPlayer(User $player): static
+    {
+        if (!$this->players->contains($player)) {
+            $this->players->add($player);
+        }
+
+        return $this;
+    }
+
+    public function removePlayer(User $player): static
+    {
+        $this->players->removeElement($player);
+
+        return $this;
+    }
+
+    public function getRole(): ?Role
+    {
+        return $this->role;
+    }
+
+    public function setRole(?Role $role): static
+    {
+        $this->role = $role;
 
         return $this;
     }

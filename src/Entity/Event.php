@@ -43,6 +43,9 @@ class Event
     #[ORM\OneToMany(mappedBy: 'event', targetEntity: PhysicalTable::class, orphanRemoval: true)]
     private Collection $physicalTables;
 
+    #[ORM\ManyToOne(inversedBy: 'events')]
+    private ?Role $status = null;
+
     public function __construct()
     {
         $this->physicalTables = new ArrayCollection();
@@ -163,6 +166,18 @@ class Event
                 $physicalTables->setEvent(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getStatus(): ?Role
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?Role $status): static
+    {
+        $this->status = $status;
 
         return $this;
     }
