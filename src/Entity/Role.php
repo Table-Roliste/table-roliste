@@ -7,6 +7,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Différents rôles que peuvent avoir les entités avec un champ rôle
+ * Liste de valeur administrable
+ */
 #[ORM\Entity(repositoryClass: RoleRepository::class)]
 class Role
 {

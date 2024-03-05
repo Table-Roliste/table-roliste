@@ -10,6 +10,10 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Statut possible des différentes entités possédant un attribut status (À valider, Archivé, Annulé, Prêt, etc)
+ * Liste de valeur administrable
+ */
 #[ORM\Entity(repositoryClass: StatusRepository::class)]
 class Status
 {

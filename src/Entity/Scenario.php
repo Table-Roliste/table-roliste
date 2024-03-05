@@ -10,6 +10,11 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Scénario de jeu issu du commerce
+ * Dispose de son/ses auteur(s).
+ *  L'ISBN (code barre) et le lien grog sont optionnels pour l'instant
+ */
 #[ORM\Entity(repositoryClass: ScenarioRepository::class)]
 class Scenario
 {

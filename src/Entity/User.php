@@ -9,6 +9,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Utilisateur du site.
+ * Identifié par un pseudo et une adresse mail
+ * Les attribut téléphone et discord sont hypothétiques pour l'instant
+ * Les différents roles (Admin, joueur, MJ, etc) sont gérés avec l'attribut Role
+ */
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\InheritanceType('SINGLE_TABLE')]
 #[ORM\DiscriminatorColumn(name: 'discr', type: 'string')]

@@ -8,6 +8,11 @@ use App\Repository\PhysicalTableRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Table Physique de jeu, disposé dans une salle pour un Event.
+ * Repérée par leur nom.
+ * Présente un certain nombre de places.
+ */
 #[ORM\Entity(repositoryClass: PhysicalTableRepository::class)]
 class PhysicalTable
 {

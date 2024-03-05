@@ -10,6 +10,11 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Système de régles de jeu (Pathinder 2e, D&D 5e, FATE, etc)
+ * Dispose d'un auteur.
+ * L'ISBN (code barre) et le lien grog sont optionnels pour l'instant
+ */
 #[ORM\Entity(repositoryClass: RPGRepository::class)]
 class RPG
 {

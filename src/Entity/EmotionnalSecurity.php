@@ -8,6 +8,10 @@ use App\Repository\EmotionnalSecurityRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Outils de sécurité émotionnelle (X card, voiles et lignes, etc)
+ * Liste de Valeur Administrable
+ */
 #[ORM\Entity(repositoryClass: EmotionnalSecurityRepository::class)]
 class EmotionnalSecurity
 {

@@ -11,6 +11,10 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Évènement proposant des tables de jeu (PhysicalTable) et des sessions de jeu (GameSession).
+ * Organisé par une association pendant une période donnée avec différentes périodes de réservations.
+ */
 #[ORM\Entity(repositoryClass: EventRepository::class)]
 class Event
 {

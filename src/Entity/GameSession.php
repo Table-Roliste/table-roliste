@@ -11,6 +11,12 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Session de jeu sur un système de jeu (RPG) avec un scénario (Scenario).
+ * Réunie plusieurs joueurs (User) dont un ou plusieurs maitres de jeu.
+ * Un synopsis, des outils de sécurité émotionnelle (EmotionnalSecurity) et des catégories de joueurs (PlayerCategory) sont fourni lors de la création de la session, généralement par un MJ.
+ * La session de jeu est validé par un Admin avant d'être visible sur le site.
+ */
 #[ORM\Entity(repositoryClass: GameSessionRepository::class)]
 class GameSession
 {
@@ -153,14 +159,26 @@ class GameSession
         return $this;
     }
 
+    public function getMjNumber(): ?int
+    {
+        return $this->mjNumber;
+    }
+
+    public function setMjNumber(int $mjNumber): static
+    {
+        $this->mjNumber = $mjNumber;
+
+        return $this;
+    }
+
     public function getSynopsis(): ?string
     {
         return $this->synopsis;
     }
 
-    public function setSynopsis(string $Synopsis): static
+    public function setSynopsis(string $synopsis): static
     {
-        $this->synopsis = $Synopsis;
+        $this->synopsis = $synopsis;
 
         return $this;
     }

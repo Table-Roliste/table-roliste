@@ -9,6 +9,10 @@ use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Membre d'une association
+ * Identique à un User standard avec une date d'expiration au sein de son asso.
+ */
 #[ORM\Entity(repositoryClass: MemberRepository::class)]
 class Member extends User
 {

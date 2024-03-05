@@ -9,6 +9,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Auteur (Author) de jeu de rôle (RPG) et/ou de scénarios (Scenario)
+ * Peut être connu par son nom/prénom et/ou par son surnom
+ */
 #[ORM\Entity(repositoryClass: AuthorRepository::class)]
 class Author
 {
