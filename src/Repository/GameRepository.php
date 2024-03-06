@@ -4,23 +4,23 @@ declare(strict_types=1);
 
 namespace App\Repository;
 
-use App\Entity\RPG;
+use App\Entity\Game;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<RPG>
+ * @extends ServiceEntityRepository<Game>
  *
- * @method RPG|null find($id, $lockMode = null, $lockVersion = null)
- * @method RPG|null findOneBy(array $criteria, array $orderBy = null)
- * @method RPG[]    findAll()
- * @method RPG[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Game|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Game|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Game[]    findAll()
+ * @method Game[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class RPGRepository extends ServiceEntityRepository
+class GameRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, RPG::class);
+        parent::__construct($registry, Game::class);
     }
 
     //    /**

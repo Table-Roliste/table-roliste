@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Auteur (Author) de jeu de rôle (RPG) et/ou de scénarios (Scenario)
+ * Auteur (Author) de jeu de rôle (RPG/game) et/ou de scénarios (Scenario)
  * Peut être connu par son nom/prénom et/ou par son surnom
  */
 #[ORM\Entity(repositoryClass: AuthorRepository::class)]
@@ -33,13 +33,13 @@ class Author
     #[ORM\ManyToMany(targetEntity: Scenario::class, mappedBy: 'author')]
     private Collection $scenarios;
 
-    #[ORM\ManyToMany(targetEntity: RPG::class, mappedBy: 'author')]
-    private Collection $RPGs;
+    #[ORM\ManyToMany(targetEntity: Game::class, mappedBy: 'author')]
+    private Collection $games;
 
     public function __construct()
     {
         $this->scenarios = new ArrayCollection();
-        $this->RPGs = new ArrayCollection();
+        $this->games = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -105,27 +105,27 @@ class Author
     }
 
     /**
-     * @return Collection<int, RPG>
+     * @return Collection<int, Game>
      */
-    public function getRPGs(): Collection
+    public function getGames(): Collection
     {
-        return $this->RPGs;
+        return $this->games;
     }
 
-    public function addRPG(RPG $rPG): static
+    public function addGame(Game $game): static
     {
-        if (!$this->RPGs->contains($rPG)) {
-            $this->RPGs->add($rPG);
-            $rPG->addAuthor($this);
+        if (!$this->games->contains($game)) {
+            $this->games->add($game);
+            $game->addAuthor($this);
         }
 
         return $this;
     }
 
-    public function removeRPG(RPG $rPG): static
+    public function removeGame(Game $game): static
     {
-        if ($this->RPGs->removeElement($rPG)) {
-            $rPG->removeAuthor($this);
+        if ($this->games->removeElement($game)) {
+            $game->removeAuthor($this);
         }
 
         return $this;

@@ -12,9 +12,9 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Session de jeu sur un système de jeu (RPG) avec un scénario (Scenario).
+ * Session de jeu sur un système de jeu (RPG/game) avec un scénario (Scenario).
  * Réunie plusieurs joueurs (User) dont un ou plusieurs maitres de jeu.
- * Un synopsis, des outils de sécurité émotionnelle (EmotionnalSecurity) et des catégories de joueurs (PlayerCategory) sont fourni lors de la création de la session, généralement par un MJ.
+ * Un synopsis, des outils de sécurité émotionnelle (EmotionalSecurity) et des catégories de joueurs (PlayerCategory) sont fourni lors de la création de la session, généralement par un MJ.
  * La session de jeu est validé par un Admin avant d'être visible sur le site.
  */
 #[ORM\Entity(repositoryClass: GameSessionRepository::class)]
@@ -34,8 +34,8 @@ class GameSession
     #[ORM\ManyToOne(targetEntity: Scenario::class, inversedBy: 'gameSessions')]
     private ?Scenario $scenario = null;
 
-    #[ORM\ManyToOne(targetEntity: RPG::class, inversedBy: 'gameSessions')]
-    private ?RPG $RPG = null;
+    #[ORM\ManyToOne(targetEntity: Game::class, inversedBy: 'gameSessions')]
+    private ?Game $game = null;
 
     #[ORM\Column(type: Types::SMALLINT)]
     private int $minPlayers;
@@ -44,7 +44,7 @@ class GameSession
     private int $maxPlayers;
 
     #[ORM\Column(type: Types::SMALLINT)]
-    private int $mjNumber;
+    private int $gameMasterNumber;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $synopsis = null;
@@ -55,7 +55,7 @@ class GameSession
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?EmotionnalSecurity $emotionnalSecurity = null;
+    private ?EmotionalSecurity $emotionalSecurity = null;
 
     #[ORM\ManyToMany(targetEntity: Genre::class, inversedBy: 'gameSessions')]
     private Collection $genre;
@@ -123,14 +123,14 @@ class GameSession
         return $this;
     }
 
-    public function getRPG(): ?RPG
+    public function getGame(): ?Game
     {
-        return $this->RPG;
+        return $this->game;
     }
 
-    public function setRPG(?RPG $RPG): static
+    public function setGame(?Game $game): static
     {
-        $this->RPG = $RPG;
+        $this->game = $game;
 
         return $this;
     }
@@ -195,16 +195,26 @@ class GameSession
         return $this;
     }
 
-    public function getEmotionnalSecurity(): ?EmotionnalSecurity
+    public function getEmotionalSecurity(): ?EmotionalSecurity
     {
-        return $this->emotionnalSecurity;
+        return $this->emotionalSecurity;
     }
 
-    public function setEmotionnalSecurity(?EmotionnalSecurity $emotionnalSecurity): static
+    public function setEmotionalSecurity(?EmotionalSecurity $emotionalSecurity): static
     {
-        $this->emotionnalSecurity = $emotionnalSecurity;
+        $this->emotionalSecurity = $emotionalSecurity;
 
         return $this;
+    }
+
+    public function getGameMasterNumber(): int
+    {
+        return $this->gameMasterNumber;
+    }
+
+    public function setGameMasterNumber(int $gameMasterNumber): void
+    {
+        $this->gameMasterNumber = $gameMasterNumber;
     }
 
     /**

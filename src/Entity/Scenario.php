@@ -32,8 +32,8 @@ class Scenario
     #[ORM\Column(length: 2080, nullable: true)]
     private ?string $grogLink = null;
 
-    #[ORM\Column(type: Types::INTEGER, length: 13)]
-    private ?int $isbn;
+    #[ORM\Column(type: Types::STRING, length: 13)]
+    private ?string $isbn;
 
     #[ORM\OneToMany(mappedBy: 'scenario', targetEntity: GameSession::class)]
     private Collection $gameSessions;
@@ -59,16 +59,15 @@ class Scenario
         $this->name = $name;
     }
 
-    public function getIsbn(): ?int
+    public function getIsbn(): ?string
     {
         return $this->isbn;
     }
 
-    public function setIsbn(?int $isbn): void
+    public function setIsbn(?string $isbn): void
     {
         $this->isbn = $isbn;
     }
-
     /**
      * @return Collection<int, Author>
      */

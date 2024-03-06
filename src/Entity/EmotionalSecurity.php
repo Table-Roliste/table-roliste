@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Repository\EmotionnalSecurityRepository;
+use App\Repository\EmotionalSecurityRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -12,8 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
  * Outils de sécurité émotionnelle (X card, voiles et lignes, etc)
  * Liste de Valeur Administrable
  */
-#[ORM\Entity(repositoryClass: EmotionnalSecurityRepository::class)]
-class EmotionnalSecurity
+#[ORM\Entity(repositoryClass: EmotionalSecurityRepository::class)]
+class EmotionalSecurity
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

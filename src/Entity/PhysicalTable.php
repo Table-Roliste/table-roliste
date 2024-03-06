@@ -26,7 +26,7 @@ class PhysicalTable
     private Event $event;
 
     #[ORM\Column(type: Types::SMALLINT)]
-    private int $seating;
+    private int $seatsNumber;
 
     #[ORM\Column(length: 255)]
     private string $name;
@@ -46,14 +46,14 @@ class PhysicalTable
         $this->event = $event;
     }
 
-    public function getSeating(): int
+    public function getSeatsNumber(): int
     {
-        return $this->seating;
+        return $this->seatsNumber;
     }
 
-    public function setSeating(int $seating): void
+    public function setSeatsNumber(int $seatsNumber): void
     {
-        $this->seating = $seating;
+        $this->seatsNumber = $seatsNumber;
     }
 
     public function getName(): string

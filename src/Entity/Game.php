@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Repository\RPGRepository;
+use App\Repository\GameRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -15,8 +15,8 @@ use Doctrine\ORM\Mapping as ORM;
  * Dispose d'un auteur.
  * L'ISBN (code barre) et le lien grog sont optionnels pour l'instant
  */
-#[ORM\Entity(repositoryClass: RPGRepository::class)]
-class RPG
+#[ORM\Entity(repositoryClass: GameRepository::class)]
+class Game
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -26,16 +26,16 @@ class RPG
     #[ORM\Column(length: 255)]
     private string $name;
 
-    #[ORM\Column(type: Types::INTEGER, length: 13)]
-    private ?int $isbn;
+    #[ORM\Column(type: Types::STRING, length: 13)]
+    private ?string $isbn;
 
-    #[ORM\ManyToMany(targetEntity: Author::class, inversedBy: 'RPGs')]
+    #[ORM\ManyToMany(targetEntity: Author::class, inversedBy: 'games')]
     private Collection $author;
 
     #[ORM\Column(length: 2080, nullable: true)]
     private ?string $grogLink = null;
 
-    #[ORM\OneToMany(mappedBy: 'RPG', targetEntity: GameSession::class)]
+    #[ORM\OneToMany(mappedBy: 'game', targetEntity: GameSession::class)]
     private Collection $gameSessions;
 
     public function __construct()
@@ -59,12 +59,12 @@ class RPG
         $this->name = $name;
     }
 
-    public function getIsbn(): ?int
+    public function getIsbn(): ?string
     {
         return $this->isbn;
     }
 
-    public function setIsbn(?int $isbn): void
+    public function setIsbn(?string $isbn): void
     {
         $this->isbn = $isbn;
     }
@@ -114,7 +114,7 @@ class RPG
     {
         if (!$this->gameSessions->contains($gameSession)) {
             $this->gameSessions->add($gameSession);
-            $gameSession->setRPG($this);
+            $gameSession->setGame($this);
         }
 
         return $this;
@@ -124,8 +124,8 @@ class RPG
     {
         if ($this->gameSessions->removeElement($gameSession)) {
             // set the owning side to null (unless already changed)
-            if ($gameSession->getRPG() === $this) {
-                $gameSession->setRPG(null);
+            if ($gameSession->getGame() === $this) {
+                $gameSession->setGame(null);
             }
         }
 

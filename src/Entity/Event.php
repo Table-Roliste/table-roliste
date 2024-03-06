@@ -65,7 +65,7 @@ class Event
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(string $name): static
     {
         $this->name = $name;
 
@@ -77,7 +77,7 @@ class Event
         return $this->startingDate;
     }
 
-    public function setStartingDate(DateTimeInterface $startingDate): self
+    public function setStartingDate(DateTimeInterface $startingDate): static
     {
         $this->startingDate = $startingDate;
 
@@ -89,7 +89,7 @@ class Event
         return $this->endingDate;
     }
 
-    public function setEndingDate(DateTimeInterface $endingDate): self
+    public function setEndingDate(DateTimeInterface $endingDate): static
     {
         $this->endingDate = $endingDate;
 
@@ -101,7 +101,7 @@ class Event
         return $this->reservationStartingDate;
     }
 
-    public function setReservationStartingDate(?DateTimeInterface $reservationStartingDate): self
+    public function setReservationStartingDate(?DateTimeInterface $reservationStartingDate): static
     {
         $this->reservationStartingDate = $reservationStartingDate;
 
@@ -113,7 +113,7 @@ class Event
         return $this->reservationEndingDate;
     }
 
-    public function setReservationEndingDate(?DateTimeInterface $reservationEndingDate): self
+    public function setReservationEndingDate(?DateTimeInterface $reservationEndingDate): static
     {
         $this->reservationEndingDate = $reservationEndingDate;
 
@@ -125,7 +125,7 @@ class Event
         return $this->tableCreationStartingDate;
     }
 
-    public function setTableCreationStartingDate(?DateTimeInterface $tableCreationStartingDate): self
+    public function setTableCreationStartingDate(?DateTimeInterface $tableCreationStartingDate): static
     {
         $this->tableCreationStartingDate = $tableCreationStartingDate;
 
@@ -137,7 +137,7 @@ class Event
         return $this->tableCreationEndingDate;
     }
 
-    public function setTableCreationEndingDate(?DateTimeInterface $tableCreationEndingDate): self
+    public function setTableCreationEndingDate(?DateTimeInterface $tableCreationEndingDate): static
     {
         $this->tableCreationEndingDate = $tableCreationEndingDate;
 
